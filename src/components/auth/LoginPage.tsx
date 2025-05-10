@@ -36,7 +36,7 @@ const LoginPage = () => {
         <p className="text-white/80 mt-2">Accomplish more, with ease</p>
       </div>
       
-      <div className="glass-card w-full max-w-md p-6 animate-fade-in animate-delay-200 relative z-10">
+      <div className="bg-black/30 backdrop-blur-md border border-white/10 rounded-xl shadow-lg w-full max-w-md p-6 animate-fade-in animate-delay-200 relative z-10">
         <h2 className="text-xl font-semibold text-white mb-6 text-center">Welcome Back!</h2>
         
         <form onSubmit={handleLogin} className="space-y-4">
@@ -46,7 +46,7 @@ const LoginPage = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
+              className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
               placeholder="your@email.com"
             />
           </div>
@@ -57,14 +57,14 @@ const LoginPage = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-white/20 border-white/30 text-white placeholder:text-white/50"
+              className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
               placeholder="••••••••"
             />
           </div>
           
           <Button 
             type="submit" 
-            className="w-full bg-white text-taskEaze-violet hover:bg-white/90 transition-all duration-300"
+            className="w-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white hover:opacity-90 transition-all duration-300"
           >
             Login
           </Button>
@@ -74,7 +74,7 @@ const LoginPage = () => {
           <p>Don't have an account? 
             <button 
               onClick={() => navigate('/register')} 
-              className="text-white font-medium ml-1 underline underline-offset-2"
+              className="text-pink-400 font-medium ml-1 underline underline-offset-2"
             >
               Register
             </button>

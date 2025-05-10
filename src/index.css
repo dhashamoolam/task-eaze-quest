@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -73,12 +72,9 @@
     @apply bg-white/20 text-white font-medium;
   }
   
-  /* New login background with black base and flowing pink/purple colors */
+  /* Updated login background with vibrant pink/purple/blue colors on black */
   .login-background {
     background: #000000;
-    background: radial-gradient(circle at top left, rgba(159, 122, 234, 0.3) 0%, rgba(0, 0, 0, 0) 50%), 
-                radial-gradient(circle at bottom right, rgba(244, 114, 182, 0.3) 0%, rgba(0, 0, 0, 0) 50%),
-                linear-gradient(135deg, #000000 0%, #0f0f0f 100%);
     position: relative;
     overflow: hidden;
   }
@@ -90,8 +86,12 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(159, 122, 234, 0.2) 0%, rgba(244, 114, 182, 0.2) 30%, rgba(0, 0, 0, 0) 70%);
-    animation: rotate 15s linear infinite;
+    background: radial-gradient(circle, 
+                rgba(255, 0, 255, 0.3) 0%, 
+                rgba(128, 0, 255, 0.2) 20%, 
+                rgba(0, 0, 255, 0.15) 40%,
+                rgba(0, 0, 0, 0) 70%);
+    animation: rotate 20s linear infinite;
     z-index: 0;
   }
 
@@ -102,8 +102,11 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(244, 114, 182, 0.15) 0%, rgba(159, 122, 234, 0.15) 40%, rgba(0, 0, 0, 0) 60%);
-    animation: rotate 12s linear infinite reverse;
+    background: radial-gradient(circle, 
+                rgba(255, 0, 128, 0.2) 0%, 
+                rgba(128, 0, 255, 0.15) 30%, 
+                rgba(0, 0, 0, 0) 60%);
+    animation: rotate 15s linear infinite reverse;
     z-index: 0;
   }
 
