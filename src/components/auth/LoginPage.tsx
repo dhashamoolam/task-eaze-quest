@@ -25,8 +25,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center px-4">
-      <div className="animate-fade-in mb-10 flex flex-col items-center">
+    <div className="login-background min-h-screen flex flex-col justify-center items-center px-4 relative">
+      <div className="animate-fade-in mb-10 flex flex-col items-center relative z-10">
         <img 
           src="/lovable-uploads/d5795639-4a84-4926-b6b3-f4422e179fb8.png" 
           alt="Task Eaze Logo" 
@@ -36,7 +36,7 @@ const LoginPage = () => {
         <p className="text-white/80 mt-2">Accomplish more, with ease</p>
       </div>
       
-      <div className="glass-card w-full max-w-md p-6 animate-fade-in animate-delay-200">
+      <div className="glass-card w-full max-w-md p-6 animate-fade-in animate-delay-200 relative z-10">
         <h2 className="text-xl font-semibold text-white mb-6 text-center">Welcome Back!</h2>
         
         <form onSubmit={handleLogin} className="space-y-4">
@@ -84,7 +84,7 @@ const LoginPage = () => {
       
       <button 
         onClick={() => navigate('/dashboard')} 
-        className="mt-6 text-white/70 text-sm underline underline-offset-2 animate-fade-in animate-delay-300"
+        className="mt-6 text-white/70 text-sm underline underline-offset-2 animate-fade-in animate-delay-300 relative z-10"
       >
         Continue as guest
       </button>

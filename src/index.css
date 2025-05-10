@@ -72,6 +72,49 @@
   .nav-item-active {
     @apply bg-white/20 text-white font-medium;
   }
+  
+  /* New login background with black base and flowing pink/purple colors */
+  .login-background {
+    background: #000000;
+    background: radial-gradient(circle at top left, rgba(159, 122, 234, 0.3) 0%, rgba(0, 0, 0, 0) 50%), 
+                radial-gradient(circle at bottom right, rgba(244, 114, 182, 0.3) 0%, rgba(0, 0, 0, 0) 50%),
+                linear-gradient(135deg, #000000 0%, #0f0f0f 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .login-background::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(159, 122, 234, 0.2) 0%, rgba(244, 114, 182, 0.2) 30%, rgba(0, 0, 0, 0) 70%);
+    animation: rotate 15s linear infinite;
+    z-index: 0;
+  }
+
+  .login-background::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(244, 114, 182, 0.15) 0%, rgba(159, 122, 234, 0.15) 40%, rgba(0, 0, 0, 0) 60%);
+    animation: rotate 12s linear infinite reverse;
+    z-index: 0;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }
 
 @layer utilities {
