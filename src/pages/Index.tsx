@@ -22,7 +22,7 @@ const Index = () => {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center">
         <img 
-          src="/lovable-uploads/ec6bb95d-0100-4968-9de5-c6a0bd9d84f7.png" 
+          src="/lovable-uploads/d5795639-4a84-4926-b6b3-f4422e179fb8.png" 
           alt="Task Eaze Logo" 
           className="h-24 w-24 animate-pulse" 
         />

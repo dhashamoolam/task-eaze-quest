@@ -28,7 +28,7 @@ const LoginPage = () => {
     <div className="min-h-screen flex flex-col justify-center items-center px-4">
       <div className="animate-fade-in mb-10 flex flex-col items-center">
         <img 
-          src="/lovable-uploads/ec6bb95d-0100-4968-9de5-c6a0bd9d84f7.png" 
+          src="/lovable-uploads/d5795639-4a84-4926-b6b3-f4422e179fb8.png" 
           alt="Task Eaze Logo" 
           className="h-32 w-32 animate-pulse-soft"
         />
