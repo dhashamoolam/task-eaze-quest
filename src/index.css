@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 514e835fc4e7c4fc017eee953f00156516f805a7
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -72,6 +75,56 @@
   .nav-item-active {
     @apply bg-white/20 text-white font-medium;
   }
+<<<<<<< HEAD
+=======
+  
+  /* Updated login background with vibrant pink/purple/blue colors on black */
+  .login-background {
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .login-background::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, 
+                rgba(255, 0, 255, 0.3) 0%, 
+                rgba(128, 0, 255, 0.2) 20%, 
+                rgba(0, 0, 255, 0.15) 40%,
+                rgba(0, 0, 0, 0) 70%);
+    animation: rotate 20s linear infinite;
+    z-index: 0;
+  }
+
+  .login-background::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, 
+                rgba(255, 0, 128, 0.2) 0%, 
+                rgba(128, 0, 255, 0.15) 30%, 
+                rgba(0, 0, 0, 0) 60%);
+    animation: rotate 15s linear infinite reverse;
+    z-index: 0;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+>>>>>>> 514e835fc4e7c4fc017eee953f00156516f805a7
 }
 
 @layer utilities {
