@@ -88,58 +88,66 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="pt-16 pb-24 px-4 space-y-6 animate-fade-in">
+    <div className="dashboard-background pt-16 pb-24 px-4 space-y-6 relative">
       {/* Stats Overview */}
-      <div className="grid grid-cols-2 gap-3">
-        <div className="glass-card p-4 animate-fade-in animate-delay-100">
+      <div className="grid grid-cols-2 gap-3 relative z-10">
+        <div className="dashboard-card animate-fade-in animate-delay-100">
           <h3 className="text-white text-sm font-medium">Completed Today</h3>
           <p className="text-white text-2xl font-bold">{completedToday}</p>
         </div>
-        <div className="glass-card p-4 animate-fade-in animate-delay-200">
+        <div className="dashboard-card animate-fade-in animate-delay-200">
           <h3 className="text-white text-sm font-medium">Current Streak</h3>
           <p className="text-white text-2xl font-bold">{streak} days 🔥</p>
         </div>
       </div>
       
       {/* Level & Progress */}
-      <Card className="p-4 glass-card animate-fade-in animate-delay-300">
+      <Card className="dashboard-card animate-fade-in animate-delay-300 relative z-10">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-white font-semibold">Level {level}</h3>
             <p className="text-white/80 text-sm">Productivity Master</p>
           </div>
-          <div className="h-12 w-12 rounded-full bg-white/20 flex items-center justify-center">
+          <div className="h-12 w-12 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 flex items-center justify-center">
             <span className="text-white font-bold">{level}</span>
           </div>
         </div>
-        <ProgressBar progress={experience} />
+        <div className="mt-2">
+          <ProgressBar progress={experience} />
+        </div>
         <p className="text-white/80 text-xs mt-1 text-right">{experience}/100 XP</p>
       </Card>
       
       {/* Today's Tasks */}
-      <div className="animate-fade-in animate-delay-400">
+      <div className="animate-fade-in animate-delay-400 relative z-10">
         <h2 className="text-white text-lg font-semibold mb-3">Today's Tasks</h2>
-        <TaskList 
-          tasks={tasks.filter(task => 
-            task.dueDate.toDateString() === new Date().toDateString()
-          )}
-          onTaskComplete={handleTaskComplete}
-        />
+        <div className="dashboard-card">
+          <TaskList 
+            tasks={tasks.filter(task => 
+              task.dueDate.toDateString() === new Date().toDateString()
+            )}
+            onTaskComplete={handleTaskComplete}
+          />
+        </div>
       </div>
       
       {/* Upcoming Tasks */}
-      <div className="animate-fade-in animate-delay-500">
+      <div className="animate-fade-in animate-delay-500 relative z-10">
         <h2 className="text-white text-lg font-semibold mb-3">Upcoming</h2>
-        <TaskList 
-          tasks={tasks.filter(task => 
-            task.dueDate.toDateString() !== new Date().toDateString()
-          )}
-          onTaskComplete={handleTaskComplete}
-        />
+        <div className="dashboard-card">
+          <TaskList 
+            tasks={tasks.filter(task => 
+              task.dueDate.toDateString() !== new Date().toDateString()
+            )}
+            onTaskComplete={handleTaskComplete}
+          />
+        </div>
       </div>
       
       {/* Rewards Section */}
-      <Rewards level={level} streak={streak} />
+      <div className="dashboard-card relative z-10">
+        <Rewards level={level} streak={streak} />
+      </div>
     </div>
   );
 };
