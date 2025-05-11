@@ -13,6 +13,7 @@ import RegisterPage from "./components/auth/RegisterPage";
 import AppHeader from "./components/layout/AppHeader";
 import BottomNav from "./components/layout/BottomNav";
 import NotFound from "./pages/NotFound";
+import Admin from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ const App = () => (
           } />
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
