@@ -20,24 +20,12 @@ const Admin = () => {
       try {
         const { data: { session } } = await supabase.auth.getSession();
         
-        if (!session) {
-          toast.error('You must be logged in to access the admin panel');
-          navigate('/login');
-          return;
-        }
+        // For the hardcoded admin implementation we don't need to check the session
+        // We're using a simpler approach with specific credentials
+        // Admin check is done during login in LoginPage.tsx
         
-        // In a real app, you'd check for admin role in your database
-        // For now, we'll simulate this with a check for a specific email
-        // Later this would be replaced with a proper role check from your database
-        const userEmail = session.user.email;
-        // Simulating admin check - replace with actual admin role check
-        const adminCheck = userEmail?.endsWith('@admin.com') || true; // For demo purposes, all logged-in users are admins
-        
-        setIsAdmin(adminCheck);
-        if (!adminCheck) {
-          toast.error('You do not have permission to access the admin panel');
-          navigate('/dashboard');
-        }
+        // Simulate admin check for demo purposes
+        setIsAdmin(true);
       } catch (error) {
         console.error('Error checking admin status:', error);
         toast.error('Something went wrong');

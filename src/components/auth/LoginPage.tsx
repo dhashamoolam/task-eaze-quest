@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { Checkbox } from '@/components/ui/checkbox';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -20,11 +21,22 @@ const LoginPage = () => {
       return;
     }
     
-    // Simulate login (would connect to backend in real app)
-    toast.success(`${isAdmin ? 'Admin login' : 'Login'} successful!`);
+    // Check for admin credentials
+    if (isAdmin) {
+      // Admin authorization check
+      if (email === 'gmail-pesanakkara@gmail.com' && password === '1234567890') {
+        toast.success('Admin login successful!');
+        navigate('/admin');
+        return;
+      } else {
+        toast.error('Invalid admin credentials');
+        return;
+      }
+    }
     
-    // If admin is selected, navigate to admin panel, otherwise to dashboard
-    navigate(isAdmin ? '/admin' : '/dashboard');
+    // Regular user login (simulate)
+    toast.success('Login successful!');
+    navigate('/dashboard');
   };
 
   return (
@@ -66,11 +78,10 @@ const LoginPage = () => {
           </div>
           
           <div className="flex items-center">
-            <input
-              type="checkbox"
+            <Checkbox
               id="adminLogin"
               checked={isAdmin}
-              onChange={() => setIsAdmin(!isAdmin)}
+              onCheckedChange={() => setIsAdmin(!isAdmin)}
               className="rounded bg-white/5 border-white/10 text-pink-500 mr-2"
             />
             <label htmlFor="adminLogin" className="text-white/90 text-sm">
