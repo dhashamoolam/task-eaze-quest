@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = (e: React.FormEvent) => {
@@ -20,8 +21,10 @@ const LoginPage = () => {
     }
     
     // Simulate login (would connect to backend in real app)
-    toast.success('Login successful!');
-    navigate('/dashboard');
+    toast.success(`${isAdmin ? 'Admin login' : 'Login'} successful!`);
+    
+    // If admin is selected, navigate to admin panel, otherwise to dashboard
+    navigate(isAdmin ? '/admin' : '/dashboard');
   };
 
   return (
@@ -62,11 +65,24 @@ const LoginPage = () => {
             />
           </div>
           
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="adminLogin"
+              checked={isAdmin}
+              onChange={() => setIsAdmin(!isAdmin)}
+              className="rounded bg-white/5 border-white/10 text-pink-500 mr-2"
+            />
+            <label htmlFor="adminLogin" className="text-white/90 text-sm">
+              Login as Admin
+            </label>
+          </div>
+          
           <Button 
             type="submit" 
             className="w-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white hover:opacity-90 transition-all duration-300"
           >
-            Login
+            {isAdmin ? 'Admin Login' : 'Login'}
           </Button>
         </form>
         
