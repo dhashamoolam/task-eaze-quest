@@ -9,43 +9,17 @@ import { Calendar, Settings, Award, LogOut, UserRoundCog } from 'lucide-react';
 import ProgressBar from '@/components/gamification/ProgressBar';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '@/contexts/UserContext';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Skeleton } from '@/components/ui/skeleton';
+import TaskHistory from '@/components/profile/TaskHistory';
+import Achievements from '@/components/profile/Achievements';
+import Settings as SettingsComponent from '@/components/profile/Settings';
+import ProfileSettings from '@/components/profile/ProfileSettings';
 
 const Profile = () => {
   const navigate = useNavigate();
-  const { profile, loading, updateProfile, signOut } = useUser();
-  const [showEditProfile, setShowEditProfile] = useState(false);
-  const [formData, setFormData] = useState({
-    fullName: '',
-    displayName: '',
-    bio: ''
-  });
-  
-  // Handle profile data editing
-  const handleEditProfile = () => {
-    if (profile) {
-      setFormData({
-        fullName: profile.fullName,
-        displayName: profile.displayName,
-        bio: profile.bio || ''
-      });
-      setShowEditProfile(true);
-    }
-  };
-  
-  // Save profile updates
-  const handleSaveProfile = () => {
-    updateProfile({
-      fullName: formData.fullName,
-      displayName: formData.displayName,
-      bio: formData.bio
-    });
-    setShowEditProfile(false);
-  };
+  const { profile, loading, signOut } = useUser();
+  const [activeTab, setActiveTab] = useState('profile');
   
   // Handle logout
   const handleLogout = async () => {
@@ -121,16 +95,6 @@ const Profile = () => {
             <span className="h-1.5 w-1.5 rounded-full bg-white/50"></span>
             <span className="text-white/80 text-sm">{profile.experience}/100 XP</span>
           </div>
-          
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleEditProfile}
-            className="mt-3 bg-white/10 border-white/20 text-white hover:bg-white/20"
-          >
-            <UserRoundCog className="h-4 w-4 mr-2" />
-            Edit Profile
-          </Button>
         </div>
         
         {/* Stats */}
@@ -146,104 +110,65 @@ const Profile = () => {
           </Card>
         </div>
         
-        {/* Menu Items */}
-        <div className="space-y-3 animate-fade-in animate-delay-200">
-          <Button 
-            variant="ghost" 
-            className="w-full justify-start bg-white/10 hover:bg-white/20 text-white h-14"
-          >
-            <Calendar className="h-5 w-5 mr-3" />
-            <span>Task History</span>
-          </Button>
+        {/* Tabs */}
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="grid grid-cols-4 w-full bg-white/10">
+            <TabsTrigger 
+              value="profile" 
+              className="text-white data-[state=active]:bg-white/20 data-[state=active]:text-white"
+            >
+              Profile
+            </TabsTrigger>
+            <TabsTrigger 
+              value="history" 
+              className="text-white data-[state=active]:bg-white/20 data-[state=active]:text-white"
+            >
+              History
+            </TabsTrigger>
+            <TabsTrigger 
+              value="achievements" 
+              className="text-white data-[state=active]:bg-white/20 data-[state=active]:text-white"
+            >
+              Badges
+            </TabsTrigger>
+            <TabsTrigger 
+              value="settings" 
+              className="text-white data-[state=active]:bg-white/20 data-[state=active]:text-white"
+            >
+              Settings
+            </TabsTrigger>
+          </TabsList>
           
-          <Button 
-            variant="ghost" 
-            className="w-full justify-start bg-white/10 hover:bg-white/20 text-white h-14"
-          >
-            <Award className="h-5 w-5 mr-3" />
-            <span>Achievements</span>
-          </Button>
+          <TabsContent value="profile" className="mt-4">
+            <ProfileSettings />
+          </TabsContent>
           
-          <Button 
-            variant="ghost" 
-            className="w-full justify-start bg-white/10 hover:bg-white/20 text-white h-14"
-          >
-            <Settings className="h-5 w-5 mr-3" />
-            <span>Settings</span>
-          </Button>
+          <TabsContent value="history" className="mt-4">
+            <TaskHistory />
+          </TabsContent>
           
-          <Button 
-            variant="ghost" 
-            className="w-full justify-start bg-white/10 hover:bg-white/20 text-white h-14"
-            onClick={handleLogout}
-          >
-            <LogOut className="h-5 w-5 mr-3" />
-            <span>Log Out</span>
-          </Button>
-        </div>
+          <TabsContent value="achievements" className="mt-4">
+            <Achievements />
+          </TabsContent>
+          
+          <TabsContent value="settings" className="mt-4">
+            <SettingsComponent />
+          </TabsContent>
+        </Tabs>
+        
+        <Button 
+          variant="ghost" 
+          className="w-full justify-center bg-white/10 hover:bg-white/20 text-white h-14"
+          onClick={handleLogout}
+        >
+          <LogOut className="h-5 w-5 mr-3" />
+          <span>Log Out</span>
+        </Button>
         
         <div className="pt-4 text-center">
           <p className="text-white/40 text-sm">Task Eaze v1.0</p>
         </div>
       </div>
-      
-      {/* Edit Profile Dialog */}
-      <Dialog open={showEditProfile} onOpenChange={setShowEditProfile}>
-        <DialogContent className="bg-gradient-to-br from-taskEaze-pink to-taskEaze-violet border-none">
-          <DialogHeader>
-            <DialogTitle className="text-white">Edit Profile</DialogTitle>
-          </DialogHeader>
-          
-          <div className="space-y-4 py-4">
-            <div className="space-y-2">
-              <Label htmlFor="fullName" className="text-white">Full Name</Label>
-              <Input
-                id="fullName"
-                value={formData.fullName}
-                onChange={(e) => setFormData({...formData, fullName: e.target.value})}
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="displayName" className="text-white">Display Title</Label>
-              <Input
-                id="displayName"
-                value={formData.displayName}
-                onChange={(e) => setFormData({...formData, displayName: e.target.value})}
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="bio" className="text-white">Bio</Label>
-              <Textarea
-                id="bio"
-                value={formData.bio}
-                onChange={(e) => setFormData({...formData, bio: e.target.value})}
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/50 min-h-24"
-                placeholder="Tell us a bit about yourself"
-              />
-            </div>
-          </div>
-          
-          <div className="flex justify-end gap-3">
-            <Button
-              variant="ghost"
-              onClick={() => setShowEditProfile(false)}
-              className="text-white hover:bg-white/10"
-            >
-              Cancel
-            </Button>
-            <Button
-              onClick={handleSaveProfile}
-              className="bg-white text-taskEaze-pink hover:bg-white/90"
-            >
-              Save Changes
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
       
       <BottomNav />
     </>
