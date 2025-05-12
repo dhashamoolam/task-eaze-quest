@@ -13,7 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Skeleton } from '@/components/ui/skeleton';
 import TaskHistory from '@/components/profile/TaskHistory';
 import Achievements from '@/components/profile/Achievements';
-import Settings as SettingsComponent from '@/components/profile/Settings';
+import Settings from '@/components/profile/Settings';
 import ProfileSettings from '@/components/profile/ProfileSettings';
 
 const Profile = () => {
@@ -152,7 +152,7 @@ const Profile = () => {
           </TabsContent>
           
           <TabsContent value="settings" className="mt-4">
-            <SettingsComponent />
+            <Settings />
           </TabsContent>
         </Tabs>
         
